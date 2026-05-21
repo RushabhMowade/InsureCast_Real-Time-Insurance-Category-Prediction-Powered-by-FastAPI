@@ -18,17 +18,14 @@ occupation=st.selectbox("Occupation",options=['retired','freelancer','student','
 if st.button("Predict Insurance Premium Category"):
     input_data={'age':age,'weight':weight,'height':height,'income_lpa':income_lpa,'smoker':smoker,'city':city,'occupation':occupation}
     try:
-        response = request.post(Api_url,json=input_data)result = response.json()
+        response = requests.post(Api_url,json=input_data)
+        
         
         if response.status_code == 200:
-            prediction=result["response"]
-            st.success(f"Predicted Insurance Premium Category : **{prediction['predicted_cateogory']}")
-            st.write("Confidence:",prediction["confidence"])
-            st.write("Class Probabilities:")
-            st.json(prediction["class_probabilities"])
+            result = response.json()
+            
+            st.success(f"Predicted Insurance Premium Category : **{result['predicted_insurance_premium_category']}**")
         else:
             st.error(f"Api Error: {response.status_code}")
-            st.write(result)
-
     except requests.exceptions.ConnectionError:
         st.error("Could not connect to the FastApi Server. Make sure it's running")
