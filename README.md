@@ -45,6 +45,12 @@ The model processes these features and classifies users into:
 - Low Premium
 
 ---
+# 📸 Screenshots
+
+## Streamlit Frontend
+
+![InsureCast UI](image(20).png)
+
 
 # 🛠️ Tech Stack
 
